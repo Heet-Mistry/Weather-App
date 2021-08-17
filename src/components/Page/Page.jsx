@@ -12,9 +12,8 @@ const Page = () => {
 
     const {isError,isLoading,forecast,submitRequest } = useForecast();
 
-    const onSubmit =(value) => {
-
-        submitRequest({value});
+    const onSubmit =(value) => {    
+        submitRequest(value);
     }
 
     return (
