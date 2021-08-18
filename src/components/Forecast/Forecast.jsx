@@ -7,18 +7,29 @@ import CurrentDayDescription from '../CurrentDayDescription';
 import UpcomingDaysForecast from '../UpcomingDaysForecast';
 
 
-const Forecast = ({forecast}) => (
-    <Container className={styles.box}>
+const Forecast = ({forecast}) => {
+
+    console.log(forecast);
+    return (
+        <Container className={styles.box}>
         <Row>
             <Col xs={12} md={4}>
                 <div className={styles.card}>
                     <CurrentDay {...forecast.currentDay} />
                </div>
             </Col>
-            <Col xs={12} md={8} className="d-flex flex-column justify-content-between"></Col>
+            <Col xs={12} md={8} className="d-flex flex-column justify-content-between">
+                <CurrentDayDescription forecast={forecast.currentDayDetails}/>
+              
+                <UpcomingDaysForecast days={forecast.upcomingDays}/>
+            </Col>
         </Row>
     </Container>
-);
+    )
+}
+
+   
+;
 
 Forecast.propTypes = {
    forecast : PropTypes.shape({

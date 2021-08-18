@@ -41,8 +41,8 @@ const gatherForecastData = (data) =>{
     
     const currentDay = getCurrentDayForecast(data.consolidated_weather[0],data.title);
     const currentDayDetails = getCurrentDayDetailedForecast(data.consolidated_weather[0])
-    const upcomingDay = getUpcomingDayForecast(data.consolidated_weather);
-    setForecast({currentDay,currentDayDetails,upcomingDay});
+    const upcomingDays = getUpcomingDayForecast(data.consolidated_weather);
+    setForecast({currentDay,currentDayDetails,upcomingDays});
     
     setLoading(false);
 } 
