@@ -11,20 +11,42 @@ const useForecast = () => {
  const [isLoading, setLoading] = useState(false);
  const [forecast, setForecast] = useState(null);
  
- const submitRequest = async (location) => {
+ const getWoeid = async (location)=>{
     const {data}= await axios(`${REQUEST_URL}/search`, { params : {query : location} });
-    console.log({data});
-
     if(!data || data.length===0)
     {
         setError('There is no such city or location');
-        // alert("There is no such city or location")
+        setLoading(false);
         return;
     }
-    const response= await axios(`${REQUEST_URL}/${data[0].woeid}`);
-    console.log({response});
+    return data[0];
  }
-    return {
+
+ const getForecastData = async (woeid) => {
+    const {data}= await axios(`${REQUEST_URL}/${woeid}`);
+    if(!data || data.length===0)
+    {
+        setError('Something went wrong, try after few minutes');
+        setLoading(false);
+        return;
+    }
+    return data;
+ }
+
+ const submitRequest = async (location) => {
+    
+    setLoading(true);
+    setError(false);
+
+    const response= await getWoeid(location);
+    if(!response?.woeid) return;
+
+    const data=await getForecastData(response.woeid);
+    console.log({data});
+    if(!data) return;
+
+ }
+    return {    
         isError,isLoading,forecast,submitRequest
     }
 } 

@@ -11,4 +11,5 @@
     width: 85%;
     max-width: 675px;
     min-height: 300px;
+    position: relative;
 }
