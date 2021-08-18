@@ -26,7 +26,7 @@ const Page = () => {
                     {isLoading && <Loader />}
                 </div>
             )}
-            {forecast && <Forecast />}
+            {forecast && <Forecast forecast={forecast} />}
         </Fragment>
     );
 };
