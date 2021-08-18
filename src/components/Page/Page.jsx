@@ -19,14 +19,14 @@ const Page = () => {
     return (
         <Fragment>
             <Header/>
-            <div className={styles.box}>
-            
-            {!isLoading &&  <Form submitSearch={onSubmit}/> }
-            {isError && <Error message={isError} />}
-            {isLoading && <Loader />}
+            {!forecast && (
+                <div className={styles.box}>
+                    {!isLoading &&  <Form submitSearch={onSubmit}/> }
+                    {isError && <Error message={isError} />}
+                    {isLoading && <Loader />}
+                </div>
+            )}
             {forecast && <Forecast />}
-
-            </div>
         </Fragment>
     );
 };
